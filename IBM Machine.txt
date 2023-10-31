@@ -1,0 +1,21 @@
+from watson_machine_learning import Deployment, APIClient
+
+api_key = "YOUR_API_KEY"
+wml_credentials = {
+    "apikey": api_key,
+    "url": "https://us-south.ml.cloud.ibm.com",
+}
+
+client = APIClient(wml_credentials)
+space_id = "YOUR_SPACE_ID"
+
+deployment = Deployment(
+    space_id=space_id,
+    name="My Model Deployment",
+    description="Deployment of my machine learning model",
+    asset={"name": "model.pkl"},
+    online={"runtime": {"name": "default_python3.7"}},
+)
+deployment = client.deployments.create(deployment)
+
+
